@@ -13,12 +13,12 @@ plugins: ./plugins
 
 store:
   aws-s3-storage:
-    bucket: your-s3-bucket
-    keyPrefix: some-prefix # optional, has the effect of nesting all files in a subdirectory
-    region: us-west-2 # optional, will use aws s3's default behavior if not specified
-    accessKeyId: your-access-key-id # optional, aws accessKeyId for private S3 bucket
-    secretAccessKey: your-secret-access-key # optional, aws secretAccessKey for private S3 bucket
-    sessionToken: your-session-token # optional, aws sessionToken for private S3 bucket
+    bucket: AMZ_S3_BUCKET
+    keyPrefix: AMZ_S3_KEY_PREFIX # optional, has the effect of nesting all files in a subdirectory
+#    endpoint: https://lerni-team.s3-ap-southeast-1.amazonaws.com
+    region: AMZ_S3_REGION # optional, will use aws s3's default behavior if not specified
+    accessKeyId: AMZ_S3_ACCESS_KEY_ID # optional, aws accessKeyId for private S3 bucket
+    secretAccessKey: AMZ_S3_SECRET_ACCESS_KEY # optional, aws secretAccessKey for private S3 bucket
 
 web:
   title: Verdaccio
@@ -35,12 +35,12 @@ web:
 #   web: en-US
 
 auth:
-  htpasswd:
-    file: ./htpasswd
-    # Maximum amount of users allowed to register, defaults to "+inf".
-    # You can set this to -1 to disable registration.
-    # max_users: 1000
-
+  auth-memory:
+    users:
+      admin:
+        name: admin
+        password: 85J(Nw:EF$;EG3;$
+    max_users: -1
 # a list of other known repositories we can talk to
 uplinks:
   npmjs:
@@ -49,7 +49,7 @@ uplinks:
 packages:
   '@*/*':
     # scoped packages
-    access: $all
+    access: $authenticated
     publish: $authenticated
     unpublish: $authenticated
     proxy: npmjs
@@ -60,7 +60,7 @@ packages:
     #
     # you can specify usernames/groupnames (depending on your auth plugin)
     # and three keywords: "$all", "$anonymous", "$authenticated"
-    access: $all
+    access: $authenticated
 
     # allow all known users to publish/publish packages
     # (anyone can register by default, remember?)

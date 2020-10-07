@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "verdaccio -c config.yaml"
+    "start": "verdaccio -c config.yaml",
+    "start-env": "env-cmd verdaccio -c config.yaml"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "verdaccio": "^4.8.1",
+    "verdaccio-auth-memory": "^9.7.2",
     "verdaccio-aws-s3-storage": "^9.7.2"
   }
 }
