@@ -1,0 +1,15 @@
+{
+  "name": "private-registry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "verdaccio -c config.yaml"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "verdaccio": "^4.8.1",
+    "verdaccio-aws-s3-storage": "^9.7.2"
+  }
+}
